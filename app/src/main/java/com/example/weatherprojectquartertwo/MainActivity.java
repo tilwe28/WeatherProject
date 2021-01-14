@@ -2,8 +2,6 @@ package com.example.weatherprojectquartertwo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,12 +16,24 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.*;
-import java.util.concurrent.*;
 
 public class MainActivity extends AppCompatActivity {
 
+    /*
+     Current weather calls
+     *api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}&appid={API key} zip code
+     *api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key} coordinates
+
+     Forecast calls: change weather to forecast/daily
+     */
+
     String apiKey = "cfa7d5a5f5ac95c413ab1ba1b48ecfe9";
     Double lon=-74.5607, lat=40.4209;
+
+    URL url = null;
+    URLConnection urlConnection = null;
+    InputStream inputStream = null;
+    JSONObject information = new JSONObject();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            URL url = null;
             try {
                 url = new URL("http", "api.openweathermap.org", "//data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey);
             } catch (IOException e) {
@@ -48,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
             }
             Log.d("TAG", url.toString());
 
-            URLConnection urlConnection = null;
             try {
                 urlConnection = url.openConnection();
             } catch (IOException e) {
@@ -56,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
             }
             //Log.d("TAG", urlConnection.toString());
 
-            InputStream inputStream = null;
             try {
                 inputStream = urlConnection.getInputStream();
             } catch (IOException e) {
@@ -66,9 +73,8 @@ public class MainActivity extends AppCompatActivity {
 
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
-            JSONObject information = new JSONObject();
             try {
-                information.put("weather", bufferedReader.readLine());
+                information.put("", bufferedReader.readLine());
             } catch (JSONException | IOException e) {
                 e.printStackTrace();
             }
