@@ -64,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
         iv_three = findViewById(R.id.imageView_cityThree);
         button_getWeather = findViewById(R.id.button_getWeather);
 
+        iv_one.setImageResource(R.drawable.squareoutline);
+        iv_two.setImageResource(R.drawable.squareoutline);
+        iv_three.setImageResource(R.drawable.squareoutline);
+
         URLTask urlTask = new URLTask();
         urlTask.execute();
 
@@ -104,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
 
-            //Log.d("TAG", s);
+            Log.d("TAG", s);
 
         }//onPostExecute
     }//URLTask
