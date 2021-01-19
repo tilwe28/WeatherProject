@@ -80,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
         iv_two.setImageResource(R.drawable.squareoutline);
         iv_three.setImageResource(R.drawable.squareoutline);
 
+        //oonClickListeners
+        //sets longitude and latitude from users input
         et_latitude.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //button click starts URLTask where most of app functionality happens
         button_getWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         public URLTask(String latitude, String longitude) {
             this.latitude = latitude;
             this.longitude = longitude;
-        }
+        }//constructor for URLTask
 
         @Override
         protected String doInBackground(String... strings) {
@@ -155,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
             InputStream inputStream = null;
 
             try {
+                //sets up url and does api call to get readable file
                 url = new URL("http", "api.openweathermap.org", "/data/2.5/find?lat=" + latitude + "&lon=" + longitude + "&cnt=3"+ "&appid=" + apiKey);
                 urlConnection = url.openConnection();
                 inputStream = urlConnection.getInputStream();
@@ -164,8 +168,8 @@ public class MainActivity extends AppCompatActivity {
                 while (jsonChar != -1) {
                     json += (char) jsonChar;
                     jsonChar = bufferedReader.read();
-                }
-            }//trying to get api call from url and making it into a readable string to be used for a jsonObject
+                }//makes readable file into a string
+            }//trying to get api call from url and makes weather info into a string to be used for a jsonObject
             catch (IOException e) {
                 e.printStackTrace();
             }//catches any errors
@@ -185,17 +189,21 @@ public class MainActivity extends AppCompatActivity {
             JSONObject cityTwo = new JSONObject();
             JSONObject cityThree = new JSONObject();
             try {
-                //setting the JSONObject's for each city
+                //setting the JSONObjects for each city
                 information = new JSONObject(s);
                 cityOne = information.getJSONArray("list").getJSONObject(0);
                 cityTwo = information.getJSONArray("list").getJSONObject(1);
                 cityThree = information.getJSONArray("list").getJSONObject(2);
 
                 //determing time and day or night, and changing look of UI
-                //each city will be about the same so only 1 is needed to determine day or night
+                //each city will be about the same time of day so only 1 is needed to determine day or night
                 ArrayList<Integer> timesOne = timesList((cityOne.getLong("dt")));
                 if (timesOne.get(2)<7 || timesOne.get(2)>=18) {
                     view_daynight.setBackground(getDrawable(R.drawable.background_night));
+                    et_latitude.setTextColor(Color.WHITE);
+                    et_longitude.setTextColor(Color.WHITE);
+                    tv_currentWeather.setTextColor(Color.WHITE);
+                    tv_citiesInCircle.setTextColor(Color.WHITE);
                     tv_cityOne.setTextColor(Color.WHITE);
                     tv_cityTwo.setTextColor(Color.WHITE);
                     tv_cityThree.setTextColor(Color.WHITE);
@@ -213,6 +221,25 @@ public class MainActivity extends AppCompatActivity {
                     tv_dateThree.setTextColor(Color.WHITE);
                 } else if (timesOne.get(2)>= 7 && timesOne.get(2)<18) {
                     view_daynight.setBackground(getDrawable(R.drawable.background_day));
+                    et_latitude.setTextColor(Color.BLACK);
+                    et_longitude.setTextColor(Color.BLACK);
+                    tv_currentWeather.setTextColor(Color.BLACK);
+                    tv_citiesInCircle.setTextColor(Color.BLACK);
+                    tv_cityOne.setTextColor(Color.BLACK);
+                    tv_cityTwo.setTextColor(Color.BLACK);
+                    tv_cityThree.setTextColor(Color.BLACK);
+                    tv_conditionOne.setTextColor(Color.BLACK);
+                    tv_conditionTwo.setTextColor(Color.BLACK);
+                    tv_conditionThree.setTextColor(Color.BLACK);
+                    tv_temperatureOne.setTextColor(Color.BLACK);
+                    tv_temperatureTwo.setTextColor(Color.BLACK);
+                    tv_temperatureThree.setTextColor(Color.BLACK);
+                    tv_timeOne.setTextColor(Color.BLACK);
+                    tv_timeTwo.setTextColor(Color.BLACK);
+                    tv_timeThree.setTextColor(Color.BLACK);
+                    tv_dateOne.setTextColor(Color.BLACK);
+                    tv_dateTwo.setTextColor(Color.BLACK);
+                    tv_dateThree.setTextColor(Color.BLACK);
                 }//changes UI to day or night theme
                 //Log.d("TAG", ""+cityOne.getLong("dt"));
 
@@ -233,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
                 tv_cityTwo.setText(cityTwo.getString("name"));
                 tv_cityThree.setText(cityThree.getString("name"));
 
-                //setting the temperature textview's after doing required calculations
+                //setting the temperature textviews after doing required calculations
                 Double temperatureOne = (int)(((cityOne.getJSONObject("main").getDouble("temp")-273.15)*(9.0/5.0)+32.0)*10)/10.0;
                 Double temperatureTwo = (int)(((cityTwo.getJSONObject("main").getDouble("temp")-273.15)*(9.0/5.0)+32.0)*10)/10.0;
                 Double temperatureThree = (int)(((cityThree.getJSONObject("main").getDouble("temp")-273.15)*(9.0/5.0)+32.0)*10)/10.0;
@@ -241,13 +268,24 @@ public class MainActivity extends AppCompatActivity {
                 tv_temperatureTwo.setText(temperatureTwo+"°");
                 tv_temperatureThree.setText(temperatureThree+"°");
 
-                //setting the imageview with the correct weather icon and the weather condition textview
+                //setting the imageviews with the correct weather icons and the weather condition textviews
                 JSONObject conditionOne = cityOne.getJSONArray("weather").getJSONObject(0);
                 JSONObject conditionTwo = cityTwo.getJSONArray("weather").getJSONObject(0);
                 JSONObject conditionThree = cityThree.getJSONArray("weather").getJSONObject(0);
                 setCondition(conditionOne, iv_one, tv_conditionOne);
                 setCondition(conditionTwo, iv_two, tv_conditionTwo);
                 setCondition(conditionThree, iv_three, tv_conditionThree);
+
+                //making icons easy to see
+                if (tv_conditionOne.getText().equals("clear sky"))
+                    view_one.setBackgroundColor(Color.GRAY);
+                else view_one.setBackgroundColor(0);
+                if (tv_conditionTwo.getText().equals("clear sky"))
+                    view_two.setBackgroundColor(Color.GRAY);
+                else view_two.setBackgroundColor(0);
+                if (tv_conditionThree.getText().equals("clear sky"))
+                    view_three.setBackgroundColor(Color.GRAY);
+                else view_three.setBackgroundColor(0);
 
             }//trying to display weather information to the ui
             catch (JSONException e) {
@@ -286,9 +324,10 @@ public class MainActivity extends AppCompatActivity {
                     iv.setImageResource(R.drawable.squareoutline);
                     break;
             }//switch statement checks weather condition and sets image accordingly
-        } catch (JSONException e) {
+        }//tries setting the condition elements
+        catch (JSONException e) {
             e.printStackTrace();
-        }
+        }//catches any errors
     }//setCondition
 
     public ArrayList<Integer> timesList(long epochTime) {
@@ -317,7 +356,7 @@ public class MainActivity extends AppCompatActivity {
         times.add(4, seconds);
 
         return times;
-    }//cityTime
+    }//timeList
 
     public void setTime(ArrayList<Integer> times, TextView tv) {
         String ampm = "AM";
@@ -325,7 +364,7 @@ public class MainActivity extends AppCompatActivity {
             ampm = "PM";
             if (times.get(2)>12)
                 times.set(2, times.get(2)-12);
-        }
+        }//determines if time is AM or PM
         if (times.get(3)<10)
             tv.setText(times.get(2)+":0"+times.get(3)+" "+ampm+" EST");
         else tv.setText(times.get(2)+":"+times.get(3)+" "+ampm+" EST");
