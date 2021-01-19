@@ -33,10 +33,11 @@ public class MainActivity extends AppCompatActivity {
 
     String apiKey = "cfa7d5a5f5ac95c413ab1ba1b48ecfe9", lat, lon;//40.4209, -74.5607 Kendall Park
 
-    TextView tv_currentWeather, tv_citiesInCircle, tv_cityOne, tv_cityTwo, tv_cityThree, tv_temperatureOne, tv_temperatureTwo, tv_temperatureThree, tv_timeOne, tv_timeTwo, tv_timeThree, tv_dateOne, tv_dateTwo, tv_dateThree, tv_conditionOne, tv_conditionTwo, tv_conditionThree;
+    TextView tv_currentWeather, tv_citiesInCircle, tv_daynight, tv_cityOne, tv_cityTwo, tv_cityThree, tv_temperatureOne, tv_temperatureTwo, tv_temperatureThree, tv_timeOne, tv_timeTwo, tv_timeThree, tv_dateOne, tv_dateTwo, tv_dateThree, tv_conditionOne, tv_conditionTwo, tv_conditionThree;
     EditText et_latitude, et_longitude;
     ImageView iv_one, iv_two, iv_three;
     Button button_getWeather;
+    View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         tv_currentWeather = findViewById(R.id.textView_currentWeather);
         tv_citiesInCircle = findViewById(R.id.textView_citiesInCircle);
+        tv_daynight = findViewById(R.id.textView_daynight);
         tv_cityOne = findViewById(R.id.textView_cityOne);
         tv_cityTwo = findViewById(R.id.textView_cityTwo);
         tv_cityThree = findViewById(R.id.textView_cityThree);
@@ -66,11 +68,19 @@ public class MainActivity extends AppCompatActivity {
         iv_two = findViewById(R.id.imageView_cityTwo);
         iv_three = findViewById(R.id.imageView_cityThree);
         button_getWeather = findViewById(R.id.button_getWeather);
+        view = findViewById(R.id.view);
 
         iv_one.setImageResource(R.drawable.squareoutline);
         iv_two.setImageResource(R.drawable.squareoutline);
         iv_three.setImageResource(R.drawable.squareoutline);
 
+        et_latitude.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (et_latitude.getText().toString().equals("latitude"))
+                    et_latitude.setText("");
+            }
+        });
         et_latitude.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -85,6 +95,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 lat = s.toString();
+            }
+        });
+        et_longitude.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (et_longitude.getText().toString().equals("longitude"))
+                    et_longitude.setText("");
             }
         });
         et_longitude.addTextChangedListener(new TextWatcher() {
