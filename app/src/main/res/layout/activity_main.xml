@@ -8,11 +8,11 @@
     tools:context=".MainActivity">
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/view_daynight"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="35dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,6 +20,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_getWeather"
         app:layout_constraintVertical_bias="0.50" />
+
+    <View
+        android:id="@+id/view_ivOne"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_cityOne"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_cityOne"
+        app:layout_constraintStart_toStartOf="@+id/imageView_cityOne"
+        app:layout_constraintTop_toTopOf="@+id/imageView_cityOne" />
+
+    <View
+        android:id="@+id/view_ivTwo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_cityTwo"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_cityTwo"
+        app:layout_constraintStart_toStartOf="@+id/imageView_cityTwo"
+        app:layout_constraintTop_toTopOf="@+id/imageView_cityTwo"/>
+
+    <View
+        android:id="@+id/view_ivThree"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_cityThree"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_cityThree"
+        app:layout_constraintStart_toStartOf="@+id/imageView_cityThree"
+        app:layout_constraintTop_toTopOf="@+id/imageView_cityThree"/>
 
     <EditText
         android:id="@+id/editText_latitude"
@@ -50,6 +77,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Get Weather"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@+id/editText_longitutde"
         app:layout_constraintStart_toStartOf="@+id/editText_longitutde"
         app:layout_constraintTop_toBottomOf="@+id/editText_longitutde" />
@@ -59,6 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Current Weather"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/editText_longitutde"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,6 +100,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="3 cities in circle"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/textView_currentWeather"
         app:layout_constraintStart_toStartOf="@+id/textView_currentWeather"
@@ -114,6 +144,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:text="Temperature"
+        android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView_cityOne"
         app:layout_constraintStart_toStartOf="@+id/imageView_cityOne"
@@ -126,6 +157,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:text="Temperature"
+        android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView_cityTwo"
         app:layout_constraintStart_toStartOf="@+id/imageView_cityTwo"
@@ -138,6 +170,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:text="Temperature"
+        android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView_cityThree"
         app:layout_constraintStart_toStartOf="@+id/imageView_cityThree"
@@ -147,9 +180,10 @@
         android:id="@+id/textView_cityOne"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center_horizontal"
         android:text="City 1"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView_cityOne"
         app:layout_constraintEnd_toEndOf="@+id/imageView_cityOne"
@@ -159,9 +193,10 @@
         android:id="@+id/textView_cityTwo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center_horizontal"
         android:text="City 2"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView_cityTwo"
         app:layout_constraintEnd_toEndOf="@+id/imageView_cityTwo"
@@ -171,9 +206,10 @@
         android:id="@+id/textView_cityThree"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center_horizontal"
         android:text="City 3"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView_cityThree"
         app:layout_constraintEnd_toEndOf="@+id/imageView_cityThree"
@@ -186,6 +222,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:text="Time"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@+id/imageView_cityOne"
         app:layout_constraintStart_toStartOf="@+id/imageView_cityOne"
         app:layout_constraintTop_toBottomOf="@+id/textView_temperature_cityOne" />
@@ -197,6 +234,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:text="Time"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@+id/imageView_cityTwo"
         app:layout_constraintStart_toStartOf="@+id/imageView_cityTwo"
         app:layout_constraintTop_toBottomOf="@+id/textView_temperature_cityTwo" />
@@ -208,6 +246,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:text="Time"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@+id/imageView_cityThree"
         app:layout_constraintStart_toStartOf="@+id/imageView_cityThree"
         app:layout_constraintTop_toBottomOf="@+id/textView_temperature_cityThree" />
@@ -219,6 +258,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:text="Date"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@+id/imageView_cityOne"
         app:layout_constraintStart_toStartOf="@+id/imageView_cityOne"
         app:layout_constraintTop_toBottomOf="@+id/textView_time_cityOne" />
@@ -230,6 +270,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:text="Date"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@+id/imageView_cityTwo"
         app:layout_constraintStart_toStartOf="@+id/imageView_cityTwo"
         app:layout_constraintTop_toBottomOf="@+id/textView_time_cityTwo" />
@@ -241,6 +282,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:text="Date"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@+id/imageView_cityThree"
         app:layout_constraintStart_toStartOf="@+id/imageView_cityThree"
         app:layout_constraintTop_toBottomOf="@+id/textView_time_cityThree" />
@@ -252,6 +294,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:text="Weather"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@+id/imageView_cityOne"
         app:layout_constraintStart_toStartOf="@+id/imageView_cityOne"
         app:layout_constraintTop_toBottomOf="@+id/imageView_cityOne" />
@@ -263,6 +306,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:text="Weather"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@+id/imageView_cityTwo"
         app:layout_constraintStart_toStartOf="@+id/imageView_cityTwo"
         app:layout_constraintTop_toBottomOf="@+id/imageView_cityTwo" />
@@ -274,19 +318,9 @@
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:text="Weather"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@+id/imageView_cityThree"
         app:layout_constraintStart_toStartOf="@+id/imageView_cityThree"
         app:layout_constraintTop_toBottomOf="@+id/imageView_cityThree" />
-
-    <TextView
-        android:id="@+id/textView_daynight"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="Day or Night"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
