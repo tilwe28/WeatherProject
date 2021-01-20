@@ -250,6 +250,29 @@ public class MainActivity extends AppCompatActivity {
                 tv_dateTwo.setText(timesTwo.get(0)+"/"+(timesTwo.get(1)+1)+"/"+"21");
                 tv_dateThree.setText(timesThree.get(0)+"/"+(timesThree.get(1)+1)+"/"+"21");
 
+                //setting the imageviews with the correct weather icons and the weather condition textviews
+                JSONObject conditionOne = cityOne.getJSONArray("weather").getJSONObject(0);
+                JSONObject conditionTwo = cityTwo.getJSONArray("weather").getJSONObject(0);
+                JSONObject conditionThree = cityThree.getJSONArray("weather").getJSONObject(0);
+                setCondition(conditionOne, iv_one, tv_conditionOne);
+                setCondition(conditionTwo, iv_two, tv_conditionTwo);
+                setCondition(conditionThree, iv_three, tv_conditionThree);
+
+                //making icons easy to see
+                Log.d("TAG", timesOne.get(2).toString());
+                if (timesOne.get(2)>= 7 && timesOne.get(2)<18) {
+                    Log.d("TAG", "grey view");
+                    if (tv_conditionOne.getText().equals("clear sky"))
+                        view_one.setBackgroundColor(Color.GRAY);
+                    else view_one.setBackgroundColor(0);
+                    if (tv_conditionTwo.getText().equals("clear sky"))
+                        view_two.setBackgroundColor(Color.GRAY);
+                    else view_two.setBackgroundColor(0);
+                    if (tv_conditionThree.getText().equals("clear sky"))
+                        view_three.setBackgroundColor(Color.GRAY);
+                    else view_three.setBackgroundColor(0);
+                }
+
                 //setting the time textviews
                 setTime(timesOne, tv_timeOne);
                 setTime(timesTwo, tv_timeTwo);
@@ -267,27 +290,6 @@ public class MainActivity extends AppCompatActivity {
                 tv_temperatureOne.setText(temperatureOne+"°");
                 tv_temperatureTwo.setText(temperatureTwo+"°");
                 tv_temperatureThree.setText(temperatureThree+"°");
-
-                //setting the imageviews with the correct weather icons and the weather condition textviews
-                JSONObject conditionOne = cityOne.getJSONArray("weather").getJSONObject(0);
-                JSONObject conditionTwo = cityTwo.getJSONArray("weather").getJSONObject(0);
-                JSONObject conditionThree = cityThree.getJSONArray("weather").getJSONObject(0);
-                setCondition(conditionOne, iv_one, tv_conditionOne);
-                setCondition(conditionTwo, iv_two, tv_conditionTwo);
-                setCondition(conditionThree, iv_three, tv_conditionThree);
-
-                //making icons easy to see
-                if (view_daynight.getBackground() == getDrawable(R.drawable.background_day)) {
-                    if (tv_conditionOne.getText().equals("clear sky"))
-                        view_one.setBackgroundColor(Color.GRAY);
-                    else view_one.setBackgroundColor(0);
-                    if (tv_conditionTwo.getText().equals("clear sky"))
-                        view_two.setBackgroundColor(Color.GRAY);
-                    else view_two.setBackgroundColor(0);
-                    if (tv_conditionThree.getText().equals("clear sky"))
-                        view_three.setBackgroundColor(Color.GRAY);
-                    else view_three.setBackgroundColor(0);
-                }
 
             }//trying to display weather information to the ui
             catch (JSONException e) {
@@ -344,12 +346,14 @@ public class MainActivity extends AppCompatActivity {
         seconds = seconds - (hour*3600);//seconds within the hour
         int minutes = seconds/60;//minutes in hour
         int month = ((days+1)/31)+1;//month of the year
+        /*
         Log.d("TAG", ""+epochTime);
         Log.d("TAG", ""+month);
         Log.d("TAG", ""+days);
         Log.d("TAG", ""+hour);
         Log.d("TAG", ""+minutes);
         Log.d("TAG", ""+seconds);
+         */
 
         times.add(0, month);
         times.add(1, days);
