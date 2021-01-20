@@ -277,15 +277,17 @@ public class MainActivity extends AppCompatActivity {
                 setCondition(conditionThree, iv_three, tv_conditionThree);
 
                 //making icons easy to see
-                if (tv_conditionOne.getText().equals("clear sky"))
-                    view_one.setBackgroundColor(Color.GRAY);
-                else view_one.setBackgroundColor(0);
-                if (tv_conditionTwo.getText().equals("clear sky"))
-                    view_two.setBackgroundColor(Color.GRAY);
-                else view_two.setBackgroundColor(0);
-                if (tv_conditionThree.getText().equals("clear sky"))
-                    view_three.setBackgroundColor(Color.GRAY);
-                else view_three.setBackgroundColor(0);
+                if (view_daynight.getBackground() == getDrawable(R.drawable.background_day)) {
+                    if (tv_conditionOne.getText().equals("clear sky"))
+                        view_one.setBackgroundColor(Color.GRAY);
+                    else view_one.setBackgroundColor(0);
+                    if (tv_conditionTwo.getText().equals("clear sky"))
+                        view_two.setBackgroundColor(Color.GRAY);
+                    else view_two.setBackgroundColor(0);
+                    if (tv_conditionThree.getText().equals("clear sky"))
+                        view_three.setBackgroundColor(Color.GRAY);
+                    else view_three.setBackgroundColor(0);
+                }
 
             }//trying to display weather information to the ui
             catch (JSONException e) {
