@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
      *Forecast calls: change weather to forecast/daily
      */
 
-    String apiKey = "cfa7d5a5f5ac95c413ab1ba1b48ecfe9", lat, lon;//40.4209, -74.5607 Kendall Park
+    String apiKey = "YOUR API KEY", lat, lon;//40.4209, -74.5607 Kendall Park
 
     //Declaring widgets
     TextView tv_currentWeather, tv_citiesInCircle, tv_cityOne, tv_cityTwo, tv_cityThree, tv_temperatureOne, tv_temperatureTwo, tv_temperatureThree, tv_timeOne, tv_timeTwo, tv_timeThree, tv_dateOne, tv_dateTwo, tv_dateThree, tv_conditionOne, tv_conditionTwo, tv_conditionThree;
