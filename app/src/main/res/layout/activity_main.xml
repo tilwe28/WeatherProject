@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_main"
     tools:context=".MainActivity">
 
     <View
@@ -32,7 +32,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageView_cityTwo"
         app:layout_constraintEnd_toEndOf="@+id/imageView_cityTwo"
         app:layout_constraintStart_toStartOf="@+id/imageView_cityTwo"
-        app:layout_constraintTop_toTopOf="@+id/imageView_cityTwo"/>
+        app:layout_constraintTop_toTopOf="@+id/imageView_cityTwo" />
 
     <View
         android:id="@+id/view_ivThree"
@@ -41,7 +41,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageView_cityThree"
         app:layout_constraintEnd_toEndOf="@+id/imageView_cityThree"
         app:layout_constraintStart_toStartOf="@+id/imageView_cityThree"
-        app:layout_constraintTop_toTopOf="@+id/imageView_cityThree"/>
+        app:layout_constraintTop_toTopOf="@+id/imageView_cityThree" />
 
     <EditText
         android:id="@+id/editText_latitude"

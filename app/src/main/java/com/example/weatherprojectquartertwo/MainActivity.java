@@ -1,6 +1,7 @@
 package com.example.weatherprojectquartertwo;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -12,15 +13,12 @@ import android.view.View;
 import android.widget.*;
 
 import org.json.*;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.*;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     View view_daynight, view_one, view_two, view_three;
     ImageView iv_one, iv_two, iv_three;
     Button button_getWeather;
+    ConstraintLayout constraintLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,10 +74,13 @@ public class MainActivity extends AppCompatActivity {
         view_one = findViewById(R.id.view_ivOne);
         view_two = findViewById(R.id.view_ivTwo);
         view_three = findViewById(R.id.view_ivThree);
+        constraintLayout = findViewById(R.id.constraintLayout);
 
         iv_one.setImageResource(R.drawable.squareoutline);
         iv_two.setImageResource(R.drawable.squareoutline);
         iv_three.setImageResource(R.drawable.squareoutline);
+        constraintLayout.setBackgroundColor(Color.rgb(1, 1, 180));
+        view_daynight.setBackground(getDrawable(R.drawable.background_main));
 
         //oonClickListeners
         //sets longitude and latitude from users input
@@ -164,11 +166,7 @@ public class MainActivity extends AppCompatActivity {
                 inputStream = urlConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
-                int jsonChar = bufferedReader.read();
-                while (jsonChar != -1) {
-                    json += (char) jsonChar;
-                    jsonChar = bufferedReader.read();
-                }//makes readable file into a string
+                json = bufferedReader.readLine();
             }//trying to get api call from url and makes weather info into a string to be used for a jsonObject
             catch (IOException e) {
                 e.printStackTrace();
@@ -199,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
                 //each city will be about the same time of day so only 1 is needed to determine day or night
                 ArrayList<Integer> timesOne = timesList((cityOne.getLong("dt")));
                 if (timesOne.get(2)<7 || timesOne.get(2)>=18) {
+                    constraintLayout.setBackgroundColor(Color.rgb(32,1,120));
                     view_daynight.setBackground(getDrawable(R.drawable.background_night));
                     et_latitude.setTextColor(Color.WHITE);
                     et_longitude.setTextColor(Color.WHITE);
@@ -220,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
                     tv_dateTwo.setTextColor(Color.WHITE);
                     tv_dateThree.setTextColor(Color.WHITE);
                 } else if (timesOne.get(2)>= 7 && timesOne.get(2)<18) {
+                    constraintLayout.setBackgroundColor(Color.rgb(244,136,11));
                     view_daynight.setBackground(getDrawable(R.drawable.background_day));
                     et_latitude.setTextColor(Color.BLACK);
                     et_longitude.setTextColor(Color.BLACK);
@@ -259,7 +259,6 @@ public class MainActivity extends AppCompatActivity {
                 setCondition(conditionThree, iv_three, tv_conditionThree);
 
                 //making icons easy to see
-                Log.d("TAG", timesOne.get(2).toString());
                 if (timesOne.get(2)>= 7 && timesOne.get(2)<18) {
                     Log.d("TAG", "grey view");
                     if (tv_conditionOne.getText().equals("clear sky"))
@@ -371,6 +370,8 @@ public class MainActivity extends AppCompatActivity {
             if (times.get(2)>12)
                 times.set(2, times.get(2)-12);
         }//determines if time is AM or PM
+        if (times.get(2)==0)
+            times.set(2, 12);
         if (times.get(3)<10)
             tv.setText(times.get(2)+":0"+times.get(3)+" "+ampm+" EST");
         else tv.setText(times.get(2)+":"+times.get(3)+" "+ampm+" EST");
